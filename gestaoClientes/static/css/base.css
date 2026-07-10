@@ -1,0 +1,56 @@
+/* Sidebar estilizada com transição elegante */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #ffffff;
+  /* Gradiente linear suave que cria uma separação visual sem ser uma linha sólida */
+  background: linear-gradient(to right, #ffffff 98%, rgba(0, 0, 0, 0.05) 100%);
+  /* Sombra leve para profundidade */
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+  z-index: 1050;
+  padding-top: 30px;
+}
+
+/* Título */
+/* Sidebar título mais suave */
+.sidebar h4 {
+  font-size: 1.1rem;
+  /* Tamanho ligeiramente menor */
+  font-weight: 600;
+  /* Menos agressivo que o 700 */
+  color: #495057;
+  /* Cinza escuro em vez de preto puro */
+  letter-spacing: 0.5px;
+  /* Espaçamento leve para elegância */
+  margin-bottom: 40px !important;
+  text-align: center;
+  text-transform: uppercase;
+  /* Dá um ar profissional */
+}
+
+/* Conteúdo */
+.content {
+  margin-left: 250px;
+  padding: 25px;
+  position: relative;
+}
+
+/* Links */
+.sidebar .nav-link {
+  color: #6c757d;
+  font-weight: 500;
+  padding: 12px 25px;
+  margin: 0 15px 10px 15px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+/* Efeito de destaque */
+.sidebar .nav-link:hover {
+  background-color: #f8f9fa;
+  color: #007bff;
+  padding-left: 30px;
+}

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/gestaoClientes.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <!-- ALTERAÇÃO: Título centralizado conforme decisão tomada -->
+  <h2 class="titulo-pagina">Gestão de Clientes e Veículos</h2>
+
+  <!-- Alteração: Removido o value="{{ cpf_digitado }}" para o campo limpar após o reload -->
+  <form method="GET" class="search-container">
+    <input type="text" name="cpf" class="form-control-custom" placeholder="Pesquisar CPF">
+    <button class="btn-search" type="submit">
+      <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/ffffff/search--v1.png" alt="search" />
+    </button>
+  </form>
+
+  <div class="row">
+    <!-- Coluna Esquerda: Cards -->
+    <div class="col-md-8">
+      <div class="row">
+        <!-- Card Detalhes do Cliente -->
+        <div class="col-md-6">
+          <div class="painel-card">
+            <div class="painel-titulo">Detalhes do cliente</div>
+            <div class="painel-corpo">
+              <!-- ALTERAÇÃO: Exibição detalhada com campos do dicionário retornado pela view -->
+              {% if cliente %}
+              <p><strong>Nome:</strong> {{ cliente.nome }}</p>
+              <p><strong>CPF:</strong> {{ cliente.cpf_cnpj }}</p>
+              <p><strong>Email:</strong> {{ cliente.email }}</p>
+              <p><strong>Tel:</strong> {{ cliente.telefone }}</p>
+              {% else %}
+              <p>Nenhum cliente selecionado.</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- Card Veículo do Cliente -->
+        <div class="col-md-6">
+          <div class="painel-card">
+            <div class="painel-titulo">Veículo do Cliente</div>
+            <div class="painel-corpo">
+              <!-- ALTERAÇÃO: Loop for para listar caso exista mais de um veículo vinculado -->
+              {% if veiculos %}
+              {% for v in veiculos %}
+              <p><strong>Veículo:</strong> {{ v.modelo }} ({{ v.placa }})</p>
+              {% endfor %}
+              {% else %}
+              <p>Nenhum veículo vinculado.</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coluna Direita: Botões -->
+    <div class="col-md-4">
+      <div class="d-grid gap-3">
+        <button class="btn-custom">
+          <span class="icon"><img width="24" height="24"
+              src="https://img.icons8.com/fluency-systems-filled/48/add-user-male.png" alt="add-user-male"></span>
+          Cadastrar Cliente
+        </button>
+        <button class="btn-custom">
+          <span class="icon"><img width="24" height="24" src="https://img.icons8.com/ios-filled/50/tesla-model-s.png"
+              alt="tesla-model-s"></span>
+          Cadastrar Veículo
+        </button>
+        <button class="btn-custom">
+          <span class="icon"><img width="24" height="24" src="https://img.icons8.com/ios-filled/50/plus.png"
+              alt="plus"></span>
+          Criar Nova OS
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

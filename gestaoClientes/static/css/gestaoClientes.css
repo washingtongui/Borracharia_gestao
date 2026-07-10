@@ -1,0 +1,107 @@
+/* Ajuste para o Título da Página - Alinhado à esquerda */
+.titulo-pagina {
+  color: #495057 !important;
+  font-weight: 500 !important;
+  margin-bottom: 30px;
+  text-align: left;
+  /* Alinhado à esquerda */
+  padding-left: 10px;
+  /* Um pequeno respiro para não ficar colado na borda */
+}
+
+.painel-card {
+  background-color: #e9ecef;
+  border-radius: 8px;
+  padding: 15px;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.painel-titulo {
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: #333;
+}
+
+.painel-corpo {
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 20px;
+  min-height: 150px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilo dos Botões - Versão Minimalista e Arredondada */
+.btn-custom {
+  background-color: #e9ecef !important;
+  border: 1px solid #dee2e6 !important;
+  border-radius: 50px !important;
+  padding: 15px 25px !important;
+  text-align: left !important;
+  font-weight: 500 !important;
+  color: #333 !important;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin-bottom: 15px !important;
+  transition: background-color 0.2s ease !important;
+  text-decoration: none !important;
+}
+
+.btn-custom:hover {
+  background-color: #d1d6db !important;
+}
+
+.btn-custom .icon {
+  margin-right: 15px;
+}
+
+/* Estilo para garantir que todos os ícones fiquem pretos e alinhados */
+.btn-custom img {
+  vertical-align: middle;
+  margin-right: 8px;
+  filter: brightness(0) saturate(100%);
+}
+
+/* Atualização da Barra de Pesquisa */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.form-control-custom {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 50px 0 0 50px;
+  outline: none;
+  background-color: #ffffff;
+}
+
+.btn-search {
+  background-color: #e9ecef;
+  border: 1px solid #dee2e6;
+  border-left: none;
+  padding: 0 20px;
+  border-radius: 0 50px 50px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.btn-search:hover {
+  background-color: #d1d6db;
+}
+
+/* Ícone de busca na cor preta */
+.btn-search img {
+  filter: brightness(0) saturate(100%);
+  width: 20px;
+  height: 20px;
+}
