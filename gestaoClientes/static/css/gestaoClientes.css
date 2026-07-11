@@ -70,7 +70,8 @@
 .search-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  /* Reduzido levemente para o botão de limpar ficar próximo */
 }
 
 .form-control-custom {
@@ -104,4 +105,20 @@
   filter: brightness(0) saturate(100%);
   width: 20px;
   height: 20px;
+}
+
+/* Estilo do Botão Limpar Pesquisa */
+.btn-limpar {
+  color: #6c757d !important;
+  text-decoration: none !important;
+  font-size: 0.9em !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 30px !important;
+  transition: color 0.2s ease !important;
+}
+
+.btn-limpar:hover {
+  color: #333 !important;
 }

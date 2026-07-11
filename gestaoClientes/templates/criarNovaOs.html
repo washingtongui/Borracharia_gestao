@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<!-- Link para o arquivo CSS específico desta tela -->
+<link rel="stylesheet" href="{% static 'css/criarNovaOs.css' %}">
+{% endblock %}
+
+{% block content %}
+<script>
+  // --- SEGURANÇA E NAVEGAÇÃO ---
+  history.pushState(null, null, location.href);
+  window.onpopstate = function () { history.go(1); };
+</script>
+
+<div class="form-card">
+  <!-- Formulário para iniciar a nova OS -->
+  <form method="POST">
+    {% csrf_token %}
+
+    <h2>Nova Ordem de Serviço</h2>
+    <p>Cliente: <strong>{{ cliente.nome }}</strong></p>
+
+    <!-- Seleção de Veículo -->
+    <div>
+      <label>Veículo:</label>
+      <select name="id_veiculo" id="id_veiculo" class="form-control" required>
+        <option value="">Selecione um veículo...</option>
+        {% for v in veiculos %}
+        <option value="{{ v.id_veiculo }}">{{ v.placa }} - {{ v.modelo }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Seleção de Funcionário -->
+    <div>
+      <label>Mecânico Responsável:</label>
+      <select name="id_funcionario" id="id_funcionario" class="form-control" required>
+        <option value="">Selecione um funcionário...</option>
+        {% for f in funcionarios %}
+        <option value="{{ f.id_funcionario }}">{{ f.nome_completo }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Botões de Ação -->
+    <div class="container-botoes">
+      <!-- Botão Voltar -->
+      <a href="{% url 'gestao_clientes' %}" id="btn-voltar" class="btn-voltar">
+        Voltar
+      </a>
+
+      <!-- Botão de Ação -->
+      <button type="submit" class="btn-salvar">
+        Iniciar OS
+      </button>
+    </div>
+  </form>
+</div>
+
+<script src="{% static 'js/adicionarItens.js' %}"></script>
+<script src="{% static 'js/bloqueioNavegacao.js' %}"></script>
+{% endblock %}

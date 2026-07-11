@@ -7,16 +7,27 @@
 
 {% block content %}
 <div class="container-fluid">
-  <!-- ALTERAÇÃO: Título centralizado conforme decisão tomada -->
   <h2 class="titulo-pagina">Gestão de Clientes e Veículos</h2>
 
-  <!-- Alteração: Removido o value="{{ cpf_digitado }}" para o campo limpar após o reload -->
+  <!-- Barra de Pesquisa -->
   <form method="GET" class="search-container">
     <input type="text" name="cpf" class="form-control-custom" placeholder="Pesquisar CPF">
     <button class="btn-search" type="submit">
       <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/ffffff/search--v1.png" alt="search" />
     </button>
   </form>
+
+  <!-- Botão Limpar Pesquisa (Nome da URL corrigido para 'gestao_clientes') -->
+  {% if cliente or error_message %}
+  <div class="d-flex justify-content-center mb-4">
+    <a href="{% url 'gestao_clientes' %}" class="btn-limpar"
+      style="color: #6c757d; text-decoration: none; font-size: 0.9em; display: flex; align-items: center;">
+      <img width="16" height="16" src="https://img.icons8.com/ios-filled/50/6c757d/refresh.png" alt="limpar"
+        style="margin-right: 5px;">
+      Limpar pesquisa
+    </a>
+  </div>
+  {% endif %}
 
   <div class="row">
     <!-- Coluna Esquerda: Cards -->
@@ -27,7 +38,6 @@
           <div class="painel-card">
             <div class="painel-titulo">Detalhes do cliente</div>
             <div class="painel-corpo">
-              <!-- ALTERAÇÃO: Exibição detalhada com campos do dicionário retornado pela view -->
               {% if cliente %}
               <p><strong>Nome:</strong> {{ cliente.nome }}</p>
               <p><strong>CPF:</strong> {{ cliente.cpf_cnpj }}</p>
@@ -44,7 +54,6 @@
           <div class="painel-card">
             <div class="painel-titulo">Veículo do Cliente</div>
             <div class="painel-corpo">
-              <!-- ALTERAÇÃO: Loop for para listar caso exista mais de um veículo vinculado -->
               {% if veiculos %}
               {% for v in veiculos %}
               <p><strong>Veículo:</strong> {{ v.modelo }} ({{ v.placa }})</p>
@@ -61,35 +70,51 @@
     <!-- Coluna Direita: Botões -->
     <div class="col-md-4">
       <div class="d-grid gap-3">
+        <!-- Cadastrar Cliente -->
         <a href="{% url 'cadastrar_cliente' %}" class="btn-custom">
-          <span class="icon">
-            <img width="24" height="24" src="https://img.icons8.com/fluency-systems-filled/48/add-user-male.png"
-              alt="add-user-male">
-          </span>
+          <span class="icon"><img width="24" height="24"
+              src="https://img.icons8.com/fluency-systems-filled/48/add-user-male.png" alt="add-user-male"></span>
           Cadastrar Cliente
         </a>
+
+        <!-- Cadastrar Veículo -->
         {% if cliente %}
         <a href="{% url 'cadastrar_veiculo' cliente.id_cliente %}" class="btn-custom">
-          <span class="icon">
-            <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/tesla-model-s.png"
-              alt="tesla-model-s">
-          </span>
+          <span class="icon"><img width="24" height="24" src="https://img.icons8.com/ios-filled/50/tesla-model-s.png"
+              alt="tesla-model-s"></span>
           Cadastrar Veículo
         </a>
         {% else %}
         <button class="btn-custom" disabled title="Pesquise um cliente primeiro">
-          <span class="icon">
-            <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/tesla-model-s.png"
-              alt="tesla-model-s">
-          </span>
+          <span class="icon"><img width="24" height="24" src="https://img.icons8.com/ios-filled/50/tesla-model-s.png"
+              alt="tesla-model-s"></span>
           Cadastrar Veículo
         </button>
         {% endif %}
-        <button class="btn-custom">
+
+        <!-- Criar Nova OS (Lógica corrigida para sempre aparecer) -->
+        {% if cliente %}
+        {% if veiculos %}
+        <a href="{% url 'criar_nova_os' cliente.id_cliente %}" class="btn-custom"
+          style="text-decoration: none; color: inherit;">
+          <span class="icon"><img width="24" height="24" src="https://img.icons8.com/ios-filled/50/plus.png"
+              alt="plus"></span>
+          Criar Nova OS
+        </a>
+        {% else %}
+        <button class="btn-custom" disabled title="Cadastre um veículo para este cliente primeiro">
+          <span class="icon"><img width="24" height="24" src="https://img.icons8.com/ios-filled/50/plus.png"
+              alt="plus"></span>
+          Sem Veículos Cadastrados
+        </button>
+        {% endif %}
+        {% else %}
+        <button class="btn-custom" disabled title="Pesquise um cliente primeiro">
           <span class="icon"><img width="24" height="24" src="https://img.icons8.com/ios-filled/50/plus.png"
               alt="plus"></span>
           Criar Nova OS
         </button>
+        {% endif %}
       </div>
     </div>
   </div>
